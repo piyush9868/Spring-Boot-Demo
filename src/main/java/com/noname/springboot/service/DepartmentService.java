@@ -1,5 +1,6 @@
 package com.noname.springboot.service;
 
+import com.noname.springboot.Exceptions.DepartmentIdNotFoundException;
 import com.noname.springboot.Exceptions.DepartmentNameNotFoundException;
 import com.noname.springboot.entity.Department;
 
@@ -11,7 +12,7 @@ public interface DepartmentService {
 
     public List<Department> getAllDepartments();
 
-    public Department getDeptById(Long id);
+    public Department getDeptById(Long id) throws DepartmentIdNotFoundException;
 
     public void deleteDepartmentById(Long id);
 

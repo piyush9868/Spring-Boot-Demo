@@ -1,12 +1,15 @@
 package com.noname.springboot.service;
 
+import com.noname.springboot.Exceptions.DepartmentIdNotFoundException;
 import com.noname.springboot.Exceptions.DepartmentNameNotFoundException;
 import com.noname.springboot.entity.Department;
 import com.noname.springboot.repository.DepartmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
@@ -25,8 +28,13 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public Department getDeptById(Long id) {
-        return departmentRepo.findById(id).get();
+    public Department getDeptById(Long id) throws DepartmentIdNotFoundException {
+
+        Optional<Department> department =  departmentRepo.findById(id);
+        if(department.isEmpty()){
+            throw new DepartmentIdNotFoundException("Id Not found!");
+        }
+        return department.get();
     }
 
     @Override

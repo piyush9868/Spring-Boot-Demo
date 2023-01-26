@@ -1,6 +1,7 @@
 package com.noname.springboot.controller;
 
 
+import com.noname.springboot.Exceptions.DepartmentIdNotFoundException;
 import com.noname.springboot.Exceptions.DepartmentNameNotFoundException;
 import com.noname.springboot.entity.Department;
 import com.noname.springboot.service.DepartmentService;
@@ -38,7 +39,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/getDept/{Id}")
-    public Department getDepartmentById(@PathVariable("Id") Long Id){
+    public Department getDepartmentById(@PathVariable("Id") Long Id) throws DepartmentIdNotFoundException {
         return departmentService.getDeptById(Id);
     }
 
